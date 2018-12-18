@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const router = require('koa-router')();
+const api = require('./api');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express12' });
-});
+// nestted routes
+router.use('/api', api.routes(), api.allowedMethods());
 
 module.exports = router;
