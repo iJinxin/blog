@@ -6,6 +6,7 @@ const path = require('path');
 
 const config = require('./../config');
 const routers = require('./routers/index');
+const db = require('./../db/index');
 
 // error handler
 
