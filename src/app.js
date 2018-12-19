@@ -6,7 +6,30 @@ const path = require('path');
 
 const config = require('./../config');
 const routers = require('./routers/index');
-const db = require('./../db/index');
+// const MongoServer = require('./../db/index');
+// const MongoServers = new MongoServer(config.mongdb);
+// const MongoOperations = require('./../db/operations');
+// MongoServers.init();
+
+// setTimeout(function(){
+//   const db = MongoServers.db;
+//   const operate = new MongoOperations(db);
+//   operate.insertOne('user', {
+//     name: 'jinxin'
+//   });
+// },0)
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+const client = new MongoClient(config.mongdb.host);
+client.connect((error, client) => {
+  assert.equal(null, error);
+  const db = client.db(config.mongdb.name);
+  db.collection('user').insertOne({name: 'jinxin'}, () => {
+    console.log('assert success!');
+  })
+})
+
 
 // error handler
 
