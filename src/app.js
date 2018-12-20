@@ -6,21 +6,9 @@ const path = require('path');
 
 const config = require('./../config');
 const routers = require('./routers/index');
+const cors = require('./middleware/cors');
 const mongoServer = require('./../db/server');
 mongoServer.initConnection();
-
-// const MongoClient = require('mongodb').MongoClient;
-// const assert = require('assert');
-
-// const client = new MongoClient(config.mongdb.host);
-// client.connect((error, client) => {
-//   assert.equal(null, error);
-//   const db = client.db(config.mongdb.name);
-//   db.collection('user').insertOne({name: 'jinxin'}, () => {
-//     console.log('assert success!');
-//   })
-// })
-
 
 // error handler
 
@@ -32,8 +20,8 @@ app.use(bodyParser({
 // 日志
 app.use(logger());
 
-// // 配置ctx.body解析中间件
-// app.use(bodyParser());
+// 跨域
+app.use(cors());
 
 // 初始化路由
 app.use(routers.routes())
