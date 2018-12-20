@@ -1,89 +1,101 @@
 // mongodb 操作
 // 基本增删改查
-class MongoOperations {
-    constructor(db) {
-        this.db = db;
-    }
-    /**
-     * 增加一个元素
-     * @param col: target collection
-     * @param doc: document
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    insertOne(col, doc, options, callback) {
-        this.db.collection(col).insertOne(doc, options, callback);
-    }
+const mongoServer = require('./server');
 
-    /**
-     * 增加多个元素
-     * @param col: target collection
-     * @param docs: Array.<object> documents to insert
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    insertMany(col, docs, options, callback) {
-        this.db.collection(col).insertMany(docs, options, callback);
-    }
+/**
+* 增加一个元素
+* @param col: target collection
+* @param doc: document
+* @param options: [optional] settings
+*/
+const insertOne = async (col, doc, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).insertOne(doc, options);
+    return res;
+};
 
-    /**
-     * 删除一个元素
-     * @param col: target collection
-     * @param filter: target document
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    deleteOne(col, filter, options, callback) {
-        this.db.collection(col).deleteOne(filter, options, callback);
-    }
-
-    /**
-     * 删除多个元素
-     * @param col: target collection
-     * @param filter: target documents
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    deleteMany(col, filter, options, callback) {
-        this.db.collection(col).deleteMany(filter, options, callback);
-    }
-
-    /**
-     * 修改一个元素
-     * @param: col: target collection
-     * @param filter: old document
-     * @param update: new document
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    updateOne(col, filter, update, options, callback) {
-        this.db.collection(col).updateOne(filter, {
-            $set: update
-        }, options, callback);
-    }
-
-    /**
-     * 修改多个元素
-     * @param: col: target collection
-     * @param filter: old documents
-     * @param update: new documents
-     * @param options: [optional] settings
-     * @param callback: [optional] callback
-     */
-    updateMany(col, filter, update, options, callback) {
-        this.db.collection(col).updateOne(filter, {
-            $set: update
-        }, options, callback);
-    }
-
-    /**
-     * 查找
-     * @param col: target collection
-     * @param query: [optional] 查询参数
-     * @param options: [optional] settings，分页等
-     */
-    find(col, query, options) {
-        this.db.collection(col).find(query, options);
-    }
+/**
+* 增加多个元素
+* @param col: target collection
+* @param docs: Array.<object> documents to insert
+* @param options: [optional] settings
+*/
+const insertMany = async (col, docs, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).insertMany(docs, options);
+    return res;
 }
-module.exports = MongoOperations;
+
+/**
+* 删除一个元素
+* @param col: target collection
+* @param filter: target document
+* @param options: [optional] settings
+*/
+const deleteOne = async (col, filter, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).deleteOne(filter, options);
+    return res;
+}
+
+/**
+* 删除多个元素
+* @param col: target collection
+* @param filter: target documents
+* @param options: [optional] settings
+*/
+const deleteMany = async (col, filters, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).deleteMany(filters, options);
+    return res;
+}
+
+/**
+* 修改一个元素
+* @param: col: target collection
+* @param filter: old document
+* @param update: new document
+* @param options: [optional] settings
+*/
+const updateOne = async (col, filter, update, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).updateOne(filter, {
+        $set: update
+    }, options);
+    return res;
+}
+
+/**
+* 修改多个元素
+* @param: col: target collection
+* @param filter: old documents
+* @param update: new documents
+* @param options: [optional] settings
+*/
+const updateMany = async (col, filters, update, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const res = await DBserver.collection(col).updateMany();
+    return res;
+}
+
+/**
+* 查找
+* @param col: target collection
+* @param query: [optional] 查询参数
+* @param options: [optional] settings，分页等
+*/
+const find = async (col, query, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const docs = await DBserver.collection(col).find(query, options).toArray();
+    return docs;
+}
+
+module.exports = {
+    insertOne,
+    insertMany,
+    deleteOne,
+    deleteMany,
+    updateOne,
+    updateMany,
+    find
+}
