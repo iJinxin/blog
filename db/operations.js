@@ -86,8 +86,13 @@ const updateMany = async (col, filters, update, options) => {
 */
 const find = async (col, query, options) => {
     const DBserver = await mongoServer.getMongoServer();
-    const docs = await DBserver.collection(col).find(query, options).toArray();
-    return docs;
+    try {
+        const docs = await DBserver.collection(col).find(query, options).toArray();
+        return docs;
+    } catch(error) {
+        console.log(error);
+    }
+
 }
 
 module.exports = {

@@ -1,21 +1,20 @@
 const Koa = require('koa');
 const app = new Koa();
 const logger = require('koa-logger');
-const bodyParser = require('koa-bodyparser');
+const bodyParser = require('koa-body-parser');
 const path = require('path');
 
 const config = require('./../config');
 const routers = require('./routers/index');
-const cors = require('./middleware/cors');
+// const cors = require('./middleware/cors');
+const cors = require('@koa/cors');
 const mongoServer = require('./../db/server');
 mongoServer.initConnection();
 
 // error handler
 
 // middlewares
-app.use(bodyParser({
-  enableTypes:['json', 'form', 'text']
-}));
+app.use(bodyParser());
 
 // 日志
 app.use(logger());

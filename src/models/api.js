@@ -1,7 +1,6 @@
 /**
  * api module - model level
  */
-const mongoServer = require('./../../db/server');
 const Operations = require('./../../db/operations');
 const apiModel = {
     async getData () {

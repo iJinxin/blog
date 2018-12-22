@@ -4,7 +4,7 @@ const apiController = {
     async exampleTest(ctx) {
         let exampleData = await apiModel.getData(ctx);
         console.log(exampleData);
-        ctx.body = "exampleData";
+        ctx.body = exampleData;
     }
 };
 

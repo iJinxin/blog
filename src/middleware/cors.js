@@ -41,7 +41,7 @@ module.exports = (option = {}) => {
             ctx.set('Access-COntrol-Allow-Methods', options.allowMethod.join(','));
 
             // Access-Control-Allow-Headers
-            ctx.set('Access-Control-Allow-Headers', options.allowHeaders.join(','));
+            ctx.set('Access-Control-Allow-Headers', ctx.get('Access-Control-Request-Headers'));
         } else {
             // Request
 
