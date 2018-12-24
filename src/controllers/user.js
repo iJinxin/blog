@@ -19,10 +19,12 @@ const userController = {
       } else if (userInfo.account === account && userInfo.password === password) {
         message = "请求成功";
       } else {
+        status = 401;
         message = "账号或密码错误";
       }
       const body = {
-        data: userInfo,
+        code: status,
+        data: null,
         message: message
       }
       ctx.status = status;
