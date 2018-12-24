@@ -92,7 +92,18 @@ const find = async (col, query, options) => {
     } catch(error) {
         console.log(error);
     }
+}
 
+/**
+ * 查找一个返回第一个匹配的document
+ * @param col: target collection
+ * @param query: [optional] 查询参数
+ * @param options: [optional] setting
+ */
+const findOne = async (col, query, options) => {
+    const DBserver = await mongoServer.getMongoServer();
+    const doc = await DBserver.collection(col).findOne(query, options);
+    return doc;
 }
 
 module.exports = {
@@ -102,5 +113,6 @@ module.exports = {
     deleteMany,
     updateOne,
     updateMany,
-    find
+    find,
+    findOne,
 }

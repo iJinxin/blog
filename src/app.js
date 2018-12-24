@@ -6,14 +6,16 @@ const path = require('path');
 
 const config = require('./../config');
 const routers = require('./routers/index');
-// const cors = require('./middleware/cors');
 const cors = require('@koa/cors');
+// const error = require('./middleware/error');
+const error = require('koa-error');
 const mongoServer = require('./../db/server');
 mongoServer.initConnection();
 
 // error handler
+app.use(error());
 
-// middlewares
+// 解析body
 app.use(bodyParser());
 
 // 日志
@@ -25,6 +27,10 @@ app.use(cors());
 // 初始化路由
 app.use(routers.routes())
 app.use(routers.allowedMethods());
+
+app.on('error', (err, ctx) => {
+  // logger.error('server error', err, ctx);
+})
 
 // start
 app.listen(config.port);

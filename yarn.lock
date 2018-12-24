@@ -92,6 +92,11 @@ bluebird@3.5.1:
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
   integrity sha1-2VUfnemPH82h5oPRfukaBgLuLrk=
 
+bluebird@^3.1.1:
+  version "3.5.3"
+  resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
+  integrity sha1-fQHG+WFsmlGrD4xUmnnf5uwz76c=
+
 body-parser@1.18.3:
   version "1.18.3"
   resolved "http://registry.npm.taobao.org/body-parser/download/body-parser-1.18.3.tgz#5b292198ffdd553b3a0f20ded0592b956955c8b4"
@@ -206,6 +211,13 @@ commander@~2.6.0:
   version "2.6.0"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
   integrity sha1-nfflL7Kgyw+4kFjugMMQQiXzfh0=
+
+consolidate@^0.15.0:
+  version "0.15.1"
+  resolved "http://registry.npm.taobao.org/consolidate/download/consolidate-0.15.1.tgz#21ab043235c71a07d45d9aad98593b0dba56bab7"
+  integrity sha1-IasEMjXHGgfUXZqtmFk7DbpWurc=
+  dependencies:
+    bluebird "^3.1.1"
 
 constantinople@~3.0.1:
   version "3.0.2"
@@ -571,6 +583,14 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-error@^3.2.0:
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/koa-error/download/koa-error-3.2.0.tgz#12958fa4ef7264ec2c4c7e4423a39d1a2c947d5c"
+  integrity sha1-EpWPpO9yZOwsTH5EI6OdGiyUfVw=
+  dependencies:
+    consolidate "^0.15.0"
+    lodash "^4.17.4"
+
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -638,7 +658,7 @@ lodash.get@4.4.2:
   resolved "http://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
 
-lodash@^4.17.10:
+lodash@^4.17.10, lodash@^4.17.4:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
