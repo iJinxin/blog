@@ -24,7 +24,10 @@ const userController = {
       }
       const body = {
         code: status,
-        data: null,
+        data: {
+          id: userInfo._id,
+          account: userInfo.account
+        },
         message: message
       }
       ctx.status = status;
