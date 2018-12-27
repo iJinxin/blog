@@ -19,6 +19,21 @@ const recordController = {
     } catch(error) {
       ctx.throw(500);
     }
+  },
+
+  // 用户获取note list
+  async queryNotes(ctx) {
+    try {
+      const notes = await recordModel.queryNoteListByUserId();
+      const body = {
+        code: 200,
+        data: notes,
+        message: '请求成功'
+      };
+      ctx.body = body;
+    } catch (error) {
+      ctx.throw(500);
+    }
   }
 }
 
