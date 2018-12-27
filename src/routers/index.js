@@ -1,9 +1,9 @@
 const router = require('koa-router')();
-const api = require('./api');
 const user = require('./user');
+const record = require('./record');
 
 // nestted routes
-router.use('/api', api.routes(), api.allowedMethods());
 router.use('/user', user.routes(), user.allowedMethods());
+router.use('/record', record.routes(), record.allowedMethods());
 
 module.exports = router;
