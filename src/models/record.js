@@ -5,7 +5,7 @@ const Operations = require('./../../db/operations');
 const mongoServer = require('./../../db/server');
 const ObjectID = require('mongodb').ObjectID;
 
-const recordController = {
+const recordModel = {
   // 插入新note到note document中
   async addNote(note) {
     const result = await Operations.insertOne('note', note);
@@ -27,4 +27,4 @@ const recordController = {
   }
 }
 
-module.exports = recordController;
+module.exports = recordModel;
