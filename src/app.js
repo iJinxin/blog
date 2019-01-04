@@ -3,6 +3,7 @@ const app = new Koa();
 const logger = require('koa-logger');
 const bodyParser = require('koa-body-parser');
 const path = require('path');
+const static = require('koa-static');
 
 const config = require('./../config');
 const routers = require('./routers/index');
@@ -17,6 +18,9 @@ app.use(error());
 
 // 解析body
 app.use(bodyParser());
+
+// 静态资源加载
+app.use(static(__dirname + './../public'));
 
 // 日志
 app.use(logger());
